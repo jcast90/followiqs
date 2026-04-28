@@ -1,0 +1,181 @@
+{
+  "$schema": "./catalog.schema.json",
+  "version": "1.0.0",
+  "description": "Catalog of composable UI patterns for the page-builder agent. Each pattern is a higher-order component built from shadcn/ui primitives and lives in src/components/patterns/<name>/.",
+  "patterns": [
+    {
+      "name": "data-table-advanced",
+      "path": "src/components/patterns/data-table-advanced",
+      "import": "@/components/patterns/data-table-advanced",
+      "purpose": "Rich tabular data display with column sort, text filter, row selection and bulk actions.",
+      "whenToUse": [
+        "Admin/back-office pages listing many rows",
+        "User management, billing history, audit logs",
+        "Any list where users need to filter, sort, or act on multiple items at once"
+      ],
+      "props": {
+        "columns": "Array<{ key: string; header: string; sortable?: boolean; render?: (row) => ReactNode }>",
+        "data": "T[] - array of row objects",
+        "keyField": "string - unique id field (default 'id')",
+        "bulkActions": "Array<{ label: string; onClick: (selectedIds: string[]) => void }>",
+        "searchPlaceholder": "string"
+      },
+      "example": "<DataTableAdvanced columns={cols} data={users} bulkActions={[{label:'Delete', onClick: deleteUsers}]} />"
+    },
+    {
+      "name": "kanban-board",
+      "path": "src/components/patterns/kanban-board",
+      "import": "@/components/patterns/kanban-board",
+      "purpose": "Column-based card board with HTML5 drag-and-drop between columns.",
+      "whenToUse": [
+        "Task trackers, CRM pipelines, content workflow",
+        "Any status-based grouping where items move between stages",
+        "Sales pipeline (Lead -> Qualified -> Won)"
+      ],
+      "props": {
+        "columns": "Array<{ id: string; title: string }>",
+        "cards": "Array<{ id: string; columnId: string; title: string; subtitle?: string; tags?: string[] }>",
+        "onCardMove": "(cardId: string, toColumn: string) => void"
+      },
+      "example": "<KanbanBoard columns={stages} cards={deals} onCardMove={updateStage} />"
+    },
+    {
+      "name": "timeline",
+      "path": "src/components/patterns/timeline",
+      "import": "@/components/patterns/timeline",
+      "purpose": "Vertical time-ordered event stream with icons, titles, timestamps, and descriptions.",
+      "whenToUse": [
+        "Activity feeds, audit trails, order status history",
+        "Onboarding progress, changelog, incident timeline"
+      ],
+      "props": {
+        "items": "Array<{ id: string; title: string; description?: string; timestamp: string|Date; icon?: ReactNode; variant?: 'default'|'success'|'warning'|'error' }>"
+      },
+      "example": "<Timeline items={activityEvents} />"
+    },
+    {
+      "name": "file-manager",
+      "path": "src/components/patterns/file-manager",
+      "import": "@/components/patterns/file-manager",
+      "purpose": "Grid/list browser for files with upload zone, type icons, size/date, and row actions.",
+      "whenToUse": [
+        "Document management, asset libraries, user uploads",
+        "Any product where users store/browse files"
+      ],
+      "props": {
+        "files": "Array<{ id: string; name: string; size: number; type: string; updatedAt: string|Date; url?: string }>",
+        "onUpload": "(files: File[]) => void",
+        "onDelete": "(id: string) => void",
+        "view": "'grid' | 'list'"
+      },
+      "example": "<FileManager files={docs} onUpload={upload} onDelete={del} />"
+    },
+    {
+      "name": "metric-dashboard",
+      "path": "src/components/patterns/metric-dashboard",
+      "import": "@/components/patterns/metric-dashboard",
+      "purpose": "Grid of KPI cards with value, delta, and inline sparkline trend.",
+      "whenToUse": [
+        "Analytics overview, admin dashboards, executive summary views",
+        "Any page where 3-8 headline metrics summarize performance"
+      ],
+      "props": {
+        "metrics": "Array<{ id: string; label: string; value: string|number; delta?: number; deltaLabel?: string; series: number[] }>"
+      },
+      "example": "<MetricDashboard metrics={kpis} />"
+    },
+    {
+      "name": "comparison-view",
+      "path": "src/components/patterns/comparison-view",
+      "import": "@/components/patterns/comparison-view",
+      "purpose": "Side-by-side feature comparison table across 2-5 options/plans/competitors.",
+      "whenToUse": [
+        "Pricing pages, plan upgrade flows, vendor comparison",
+        "Product feature-matrix landing sections"
+      ],
+      "props": {
+        "columns": "Array<{ id: string; title: string; subtitle?: string; highlighted?: boolean; ctaLabel?: string; onCta?: () => void }>",
+        "rows": "Array<{ feature: string; values: Record<string, boolean|string|number> }>"
+      },
+      "example": "<ComparisonView columns={plans} rows={features} />"
+    },
+    {
+      "name": "wizard",
+      "path": "src/components/patterns/wizard",
+      "import": "@/components/patterns/wizard",
+      "purpose": "Multi-step form with progress indicator, per-step validation, and next/back navigation.",
+      "whenToUse": [
+        "Onboarding, checkout, complex settings with 3+ logical groupings",
+        "Any form where completion rate improves by chunking"
+      ],
+      "props": {
+        "steps": "Array<{ id: string; title: string; description?: string; content: ReactNode; validate?: () => boolean|Promise<boolean> }>",
+        "onComplete": "() => void|Promise<void>",
+        "initialStep": "number"
+      },
+      "example": "<Wizard steps={onboardingSteps} onComplete={finish} />"
+    }
+  ],
+  "selectionGuide": {
+    "list": {
+      "primary": ["data-table-advanced"],
+      "secondary": ["metric-dashboard"],
+      "avoid": ["kanban-board", "wizard"],
+      "notes": "Use DataTableAdvanced with bulk actions for lists >10 rows."
+    },
+    "board": {
+      "primary": ["kanban-board"],
+      "secondary": ["metric-dashboard"],
+      "avoid": ["data-table-advanced", "wizard"],
+      "notes": "KanbanBoard for status-driven workflows. Add MetricDashboard for counts per column."
+    },
+    "activity": {
+      "primary": ["timeline"],
+      "secondary": ["metric-dashboard"],
+      "avoid": ["kanban-board", "file-manager", "wizard"],
+      "notes": "Use TimelineGrouped when events span multiple days."
+    },
+    "files": {
+      "primary": ["file-manager"],
+      "secondary": [],
+      "avoid": ["kanban-board", "wizard"],
+      "notes": "FileManager handles upload, rename, delete, grid/list toggle."
+    },
+    "analytics": {
+      "primary": ["metric-dashboard"],
+      "secondary": ["data-table-advanced", "timeline"],
+      "avoid": ["kanban-board", "wizard", "file-manager"],
+      "notes": "Lead with MetricDashboard (columns=4 for dense dashboards). Add DataTableAdvanced below for raw data."
+    },
+    "pricing": {
+      "primary": ["comparison-view"],
+      "secondary": [],
+      "avoid": ["kanban-board", "file-manager", "wizard"],
+      "notes": "Use highlighted column for the recommended plan."
+    },
+    "comparison": {
+      "primary": ["comparison-view"],
+      "secondary": ["metric-dashboard"],
+      "avoid": ["kanban-board", "wizard"],
+      "notes": "groupByCategory=true to separate feature groups."
+    },
+    "onboarding": {
+      "primary": ["wizard"],
+      "secondary": [],
+      "avoid": ["kanban-board", "data-table-advanced"],
+      "notes": "Use layout=\"vertical\" for longer wizards (5+ steps), layout=\"horizontal\" for 3-4 steps."
+    },
+    "settings": {
+      "primary": ["wizard"],
+      "secondary": [],
+      "avoid": ["kanban-board", "file-manager", "timeline"],
+      "notes": "Single-step Wizard works as a sectioned form with a save button."
+    },
+    "overview": {
+      "primary": ["metric-dashboard"],
+      "secondary": ["timeline", "data-table-advanced"],
+      "avoid": ["wizard", "comparison-view"],
+      "notes": "MetricDashboard at the top (3-4 KPIs), Timeline for recent activity, DataTableAdvanced for latest records."
+    }
+  }
+}

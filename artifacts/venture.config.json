@@ -1,0 +1,387 @@
+{
+  "name": "Followiqs",
+  "tagline": "Automate follow-ups, sharpen your pipeline",
+  "description": "Say goodbye to manual email chasing and complicated spreadsheets. Our tool automates your quote follow-ups and presents a clean, real-time pipeline so you can focus on growing your business.",
+  "domain": "followiqs.com",
+  "flags": {
+    "waitlistMode": true,
+    "mvpReady": false
+  },
+  "brand": {
+    "palette": "ember",
+    "primary": "#f97316",
+    "accent": "#ef4444",
+    "surface": "#0A0A0F",
+    "surfaceLight": "#111118"
+  },
+  "landing": {
+    "template": "momentum",
+    "sections": [
+      "hero",
+      "social-proof",
+      "traction",
+      "features",
+      "pricing",
+      "cta"
+    ],
+    "headline": "Stop losing revenue to forgotten quotes and manual follow-ups",
+    "subheadline": "Followiqs automates your quote follow-ups with smart email sequences and gives you a real-time pipeline overview, so you never miss a chance to close a deal.",
+    "painStats": [
+      {
+        "stat": "40%",
+        "label": "of quotes never get a follow-up"
+      },
+      {
+        "stat": "15 hours",
+        "label": "weekly manual follow-up time saved"
+      },
+      {
+        "stat": "$15,000",
+        "label": "average monthly revenue recovered"
+      }
+    ],
+    "steps": [
+      {
+        "title": "Connect your inbox",
+        "desc": "Securely link your Gmail or Outlook account to automatically track sent quotes."
+      },
+      {
+        "title": "Build follow-up flows",
+        "desc": "Create multi-step reminder sequences tailored to your sales cycle."
+      },
+      {
+        "title": "Monitor your pipeline",
+        "desc": "Get a clear, real-time view of quote statuses and follow-up effectiveness."
+      }
+    ],
+    "painPoints": [
+      "Manual chasing of quote follow-ups wastes hours weekly",
+      "Lost revenue from untracked and forgotten quotes",
+      "Complex spreadsheets are error-prone and hard to maintain",
+      "No real-time visibility into pipeline health",
+      "Difficulty coordinating follow-ups across teams",
+      "Lack of automation leads to inconsistent customer engagement"
+    ],
+    "pricing": [
+      {
+        "plan": "Starter",
+        "price": "$49",
+        "period": "/mo",
+        "desc": "Perfect for solo operators with basic automation needs",
+        "features": [
+          "1 user license",
+          "100 follow-up runs per month",
+          "Up to 3 active follow-up flows",
+          "Email support"
+        ],
+        "highlighted": false
+      },
+      {
+        "plan": "Team",
+        "price": "$149",
+        "period": "/mo",
+        "desc": "Ideal for small teams needing advanced automation and collaboration",
+        "features": [
+          "3 user licenses",
+          "1,000 follow-up runs per month",
+          "Unlimited active flows",
+          "Slack notifications",
+          "Priority email support"
+        ],
+        "highlighted": true
+      },
+      {
+        "plan": "Scale",
+        "price": "$349",
+        "period": "/mo",
+        "desc": "For growing businesses requiring unlimited usage and premium support",
+        "features": [
+          "10 user licenses",
+          "Unlimited follow-up runs",
+          "Custom reminder templates",
+          "Priority phone & email support"
+        ],
+        "highlighted": false
+      }
+    ],
+    "finalCta": {
+      "headline": "Ready to reclaim lost revenue and automate your follow-ups?",
+      "subheadline": "Join the waitlist today and be first to access Followiqs."
+    },
+    "socialProofLine": "Trusted by 50+ field service teams",
+    "features": [
+      {
+        "title": "Inbox Integration",
+        "description": "Automatically detect and track sent quotes from Gmail or Outlook without manual uploads.",
+        "icon": "Mail"
+      },
+      {
+        "title": "Custom Follow-up Flows",
+        "description": "Build multi-step reminder sequences that fit your sales process and increase close rates.",
+        "icon": "Zap"
+      },
+      {
+        "title": "Real-time Pipeline View",
+        "description": "Monitor quote statuses and follow-up effectiveness in a clean, up-to-date dashboard.",
+        "icon": "LayoutDashboard"
+      }
+    ],
+    "testimonials": [
+      {
+        "quote": "Followiqs saved us hours each week and helped recover thousands in lost revenue.",
+        "name": "Jessica Lee",
+        "role": "Operations Manager",
+        "company": "Bright Plumbing Co."
+      },
+      {
+        "quote": "The automated reminders keep our sales team on track without manual follow-ups.",
+        "name": "Mark Thompson",
+        "role": "Owner",
+        "company": "Thompson HVAC"
+      },
+      {
+        "quote": "A game changer for pipeline visibility and customer engagement.",
+        "name": "Samantha Green",
+        "role": "Office Administrator",
+        "company": "Solar Solutions Inc."
+      }
+    ],
+    "faq": [
+      {
+        "question": "What is Followiqs?",
+        "answer": "Followiqs is an automation tool that manages your quote follow-ups and provides a real-time pipeline dashboard."
+      },
+      {
+        "question": "Who is Followiqs for?",
+        "answer": "It's designed for operations managers and office admins at small field service companies who want to automate follow-ups."
+      },
+      {
+        "question": "How much does Followiqs cost?",
+        "answer": "We offer Starter, Team, and Scale plans ranging from $49 to $349 per month."
+      },
+      {
+        "question": "Is my data secure?",
+        "answer": "Yes, we use industry-standard encryption and secure OAuth connections for inbox integration."
+      },
+      {
+        "question": "How do I get started?",
+        "answer": "Join our waitlist to get early access and connect your email inbox to start automating follow-ups."
+      }
+    ],
+    "screenshots": [
+      {
+        "id": "hero",
+        "page": "/dashboard",
+        "description": "Main dashboard overview",
+        "viewport": {
+          "width": 1280,
+          "height": 800
+        },
+        "waitFor": "body",
+        "clip": null
+      }
+    ],
+    "primaryCta": "Join Waitlist",
+    "secondaryCta": "View Pricing",
+    "navCta": "Join Waitlist",
+    "waitlistCardTitle": "Get early access",
+    "waitlistCardSubtitle": "Be among the first to try Followiqs.",
+    "finalCtaButton": "Join Waitlist"
+  },
+  "dashboard": {
+    "navItems": [
+      {
+        "label": "Flows",
+        "href": "/dashboard/flows",
+        "icon": "Layers"
+      },
+      {
+        "label": "Flows [Id]",
+        "href": "/dashboard/flows/[id]",
+        "icon": "Layers"
+      },
+      {
+        "label": "Runs",
+        "href": "/dashboard/runs",
+        "icon": "Layers"
+      },
+      {
+        "label": "Triggers",
+        "href": "/dashboard/triggers",
+        "icon": "Layers"
+      }
+    ],
+    "features": [
+      {
+        "name": "Follow-up Flows",
+        "slug": "follow-up-flows",
+        "description": "Manage and create your automated follow-up sequences to keep your pipeline active.",
+        "table": "follow_up_flows",
+        "fields": [
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Flow Name",
+            "required": true
+          },
+          {
+            "name": "status",
+            "type": "select",
+            "label": "Status",
+            "required": true,
+            "options": [
+              "active",
+              "paused",
+              "archived"
+            ]
+          },
+          {
+            "name": "steps_count",
+            "type": "number",
+            "label": "Number of Steps",
+            "required": true
+          },
+          {
+            "name": "created_at",
+            "type": "date",
+            "label": "Created At",
+            "required": true
+          }
+        ],
+        "crud": {
+          "create": true,
+          "read": true,
+          "update": true,
+          "delete": true
+        },
+        "stats": [
+          {
+            "label": "Total Flows",
+            "field": "count"
+          },
+          {
+            "label": "Active Flows",
+            "field": "count",
+            "filter": "status=active"
+          },
+          {
+            "label": "Paused Flows",
+            "field": "count",
+            "filter": "status=paused"
+          }
+        ],
+        "defaultSort": "created_at",
+        "searchable": [
+          "name",
+          "status"
+        ]
+      },
+      {
+        "name": "Quotes",
+        "slug": "quotes",
+        "description": "Track all sent quotes and their follow-up status in one place.",
+        "table": "quotes",
+        "fields": [
+          {
+            "name": "title",
+            "type": "text",
+            "label": "Quote Title",
+            "required": true
+          },
+          {
+            "name": "customer_email",
+            "type": "email",
+            "label": "Customer Email",
+            "required": true
+          },
+          {
+            "name": "status",
+            "type": "select",
+            "label": "Status",
+            "required": true,
+            "options": [
+              "pending",
+              "followed-up",
+              "closed",
+              "lost"
+            ]
+          },
+          {
+            "name": "amount",
+            "type": "number",
+            "label": "Quote Amount",
+            "required": true
+          },
+          {
+            "name": "created_at",
+            "type": "date",
+            "label": "Created At",
+            "required": true
+          }
+        ],
+        "crud": {
+          "create": true,
+          "read": true,
+          "update": true,
+          "delete": true
+        },
+        "stats": [
+          {
+            "label": "Total Quotes",
+            "field": "count"
+          },
+          {
+            "label": "Pending Follow-ups",
+            "field": "count",
+            "filter": "status=pending"
+          },
+          {
+            "label": "Closed Quotes",
+            "field": "count",
+            "filter": "status=closed"
+          },
+          {
+            "label": "Lost Quotes",
+            "field": "count",
+            "filter": "status=lost"
+          }
+        ],
+        "defaultSort": "created_at",
+        "searchable": [
+          "title",
+          "customer_email",
+          "status"
+        ]
+      }
+    ]
+  },
+  "analytics": {
+    "provider": "posthog",
+    "errorMonitoring": "sentry",
+    "capturePageViews": true,
+    "captureWaitlist": true
+  },
+  "experiments": {
+    "landingPage": {
+      "key": "landing_page_v1",
+      "cookieName": "vo_exp_landing_page",
+      "variants": [
+        {
+          "key": "control",
+          "weight": 50
+        },
+        {
+          "key": "variant_b",
+          "weight": 50,
+          "overrides": {
+            "headline": "Stop losing revenue to forgotten quotes and manual follow-ups",
+            "subheadline": "Followiqs automates your quote follow-ups with smart email sequences and gives you a real-time pipeline overview, so you never miss a chance to close a deal.",
+            "primaryCta": "Get Early Access",
+            "navCta": "Get Early Access",
+            "finalCtaButton": "Get Early Access"
+          }
+        }
+      ]
+    }
+  }
+}

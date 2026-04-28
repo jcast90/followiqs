@@ -1,0 +1,74 @@
+[
+  {
+    "feature": "Gmail OAuth",
+    "user_story": "(primary) and **Microsoft Graph / Outlook OAuth** (fan-out)",
+    "expected_route": "/dashboard/gmail-oauth",
+    "expected_controls": [
+      "chart"
+    ],
+    "expected_api_route": "",
+    "expected_db_table": "",
+    "status": "missing",
+    "missing_items": [
+      "route file missing: src/app/dashboard/gmail-oauth/page.tsx"
+    ],
+    "build_artifacts": {
+      "route_file": "",
+      "api_route": ""
+    }
+  },
+  {
+    "feature": "Supabase",
+    "user_story": "\u2014 store flows, runs, steps, reminder templates, reply events",
+    "expected_route": "/dashboard/supabase",
+    "expected_controls": [
+      "submit_button"
+    ],
+    "expected_api_route": "",
+    "expected_db_table": "",
+    "status": "missing",
+    "missing_items": [
+      "route file missing: src/app/dashboard/supabase/page.tsx"
+    ],
+    "build_artifacts": {
+      "route_file": "",
+      "api_route": ""
+    }
+  },
+  {
+    "feature": "Inngest",
+    "user_story": "\u2014 schedule Day-2 / Day-7 / Day-14 reminders per run",
+    "expected_route": "/dashboard/inngest",
+    "expected_controls": [
+      "submit_button"
+    ],
+    "expected_api_route": "",
+    "expected_db_table": "",
+    "status": "missing",
+    "missing_items": [
+      "route file missing: src/app/dashboard/inngest/page.tsx"
+    ],
+    "build_artifacts": {
+      "route_file": "",
+      "api_route": ""
+    }
+  },
+  {
+    "feature": "Resend",
+    "user_story": "\u2014 send the branded reminder emails (sender = user's own verified domain via delegated auth in v0.2; v0.1 ships with shar",
+    "expected_route": "/dashboard/resend",
+    "expected_controls": [
+      "submit_button"
+    ],
+    "expected_api_route": "",
+    "expected_db_table": "",
+    "status": "missing",
+    "missing_items": [
+      "route file missing: src/app/dashboard/resend/page.tsx"
+    ],
+    "build_artifacts": {
+      "route_file": "",
+      "api_route": ""
+    }
+  }
+]

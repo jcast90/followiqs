@@ -1,0 +1,69 @@
+{
+  "features": [
+    {
+      "name": "Contacts",
+      "slug": "contacts",
+      "icon": "Users",
+      "description": "Manage your contacts and leads.",
+      "table": "contacts",
+      "layout": "crud-table",
+      "columns": [
+        {
+          "name": "name",
+          "type": "text",
+          "label": "Name",
+          "required": true,
+          "searchable": true,
+          "render": "bold",
+          "placeholder": "John Doe"
+        },
+        {
+          "name": "email",
+          "type": "email",
+          "label": "Email",
+          "required": true,
+          "searchable": true,
+          "render": "email",
+          "placeholder": "john@example.com"
+        },
+        {
+          "name": "status",
+          "type": "select",
+          "label": "Status",
+          "required": true,
+          "options": ["active", "inactive", "lead"],
+          "default": "lead",
+          "render": "status"
+        },
+        {
+          "name": "revenue",
+          "type": "numeric",
+          "label": "Revenue",
+          "render": "currency",
+          "placeholder": "0.00"
+        },
+        {
+          "name": "last_contacted",
+          "type": "date",
+          "label": "Last Contacted",
+          "render": "date",
+          "inForm": false
+        }
+      ],
+      "stats": [
+        { "title": "Total Contacts", "computed": "count", "icon": "Users" },
+        { "title": "Active", "computed": "count", "filter": { "status": "active" } },
+        { "title": "Leads", "computed": "count", "filter": { "status": "lead" } },
+        { "title": "Revenue", "computed": "sum", "field": "revenue", "render": "currency" }
+      ],
+      "crud": {
+        "create": true,
+        "read": true,
+        "update": true,
+        "delete": true
+      },
+      "defaultSort": "created_at",
+      "sampleData": 3
+    }
+  ]
+}

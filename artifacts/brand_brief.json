@@ -1,0 +1,37 @@
+{
+  "product_name": "Followiqs",
+  "domain": "followiqs.com",
+  "domain_price": 12,
+  "domain_available": true,
+  "alternatives": [
+    {
+      "name": "Pipezet",
+      "domain": "pipezet.com",
+      "price": 12,
+      "available": true
+    }
+  ],
+  "palette_name": "sunset",
+  "brand": {
+    "primary": "#f97316",
+    "primaryDark": "#ea580c",
+    "accent": "#ef4444",
+    "gradient": "from-orange-500 to-red-500",
+    "gradientHover": "from-orange-400 to-red-400",
+    "surface": "#0A0A0F",
+    "surfaceLight": "#111118"
+  },
+  "tagline": "Automate follow-ups, sharpen your pipeline",
+  "mission": "To empower operations managers in small field service companies by automating quote follow-ups and providing a clear, actionable pipeline view that saves time and improves reporting accuracy.",
+  "description": "Say goodbye to manual email chasing and complicated spreadsheets. Our tool automates your quote follow-ups and presents a clean, real-time pipeline so you can focus on growing your business.",
+  "logo_initials": "F",
+  "template": "momentum",
+  "competitors": [
+    "Archetype",
+    "Status",
+    "Dashboard",
+    "Supabase",
+    "Inngest"
+  ],
+  "vertical": "field service"
+}

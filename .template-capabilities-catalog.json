@@ -1,0 +1,153 @@
+{
+  "components": [
+    {
+      "name": "FileUpload (pattern)",
+      "import_path": "@/components/dashboard/ (build via <input type='file'> + /api/upload)",
+      "description": "File upload pattern: <input type='file'> sends FormData to /api/upload, stores returned URL in state, saves URL to DB column.",
+      "when_to_use": "Fields typed as file, image, photo, attachment, thumbnail, logo, avatar, document"
+    },
+    {
+      "name": "Sidebar, MobileHeader, UserMenu, SidebarNav",
+      "import_path": "@/components/dashboard/",
+      "description": "Dashboard shell layout components.",
+      "when_to_use": "All authenticated dashboard pages"
+    }
+  ],
+  "api_routes": [
+    {
+      "path": "/api/upload",
+      "method": "POST",
+      "description": "Upload a file to Supabase Storage. Returns { path, url }.",
+      "when_to_use": "Any field of type file, image, photo, attachment, document, or thumbnail"
+    },
+    {
+      "path": "/api/checkout",
+      "method": "POST",
+      "description": "Create a Stripe checkout session. Returns { url }.",
+      "when_to_use": "Billing, upgrade, or payment flows"
+    },
+    {
+      "path": "/api/waitlist",
+      "method": "POST",
+      "description": "Add an email to the waitlist table.",
+      "when_to_use": "Public waitlist / lead capture forms"
+    },
+    {
+      "path": "/api/inngest",
+      "method": "PUT",
+      "description": "Register Inngest functions for event-driven background jobs.",
+      "when_to_use": "Drip campaigns, async workflows, scheduled jobs"
+    },
+    {
+      "path": "/api/billing/portal",
+      "method": "POST",
+      "description": "Create a Stripe customer portal session.",
+      "when_to_use": "Settings / billing pages where users manage subscriptions"
+    },
+    {
+      "path": "/api/auth/signout",
+      "method": "POST",
+      "description": "Sign out the current user.",
+      "when_to_use": "User menu, settings pages"
+    },
+    {
+      "path": "/api/track",
+      "method": "POST",
+      "description": "Track a user event for analytics.",
+      "when_to_use": "Tracking feature usage or key user actions"
+    },
+    {
+      "path": "/api/webhooks/stripe",
+      "method": "POST",
+      "description": "Route handler at /api/webhooks/stripe",
+      "when_to_use": ""
+    }
+  ],
+  "lib_helpers": [
+    {
+      "name": "getRows, insertRow, updateRow, deleteRow",
+      "import_path": "@/lib/supabase/db",
+      "description": "Type-safe CRUD helpers against Supabase tables. Automatically applies NEXT_PUBLIC_TABLE_PREFIX.",
+      "when_to_use": "All database reads and writes in dashboard pages"
+    },
+    {
+      "name": "createClient",
+      "import_path": "@/lib/supabase/server",
+      "description": "Create a server-side Supabase client for Server Components and Route Handlers.",
+      "when_to_use": "Server Components, API route handlers, middleware"
+    },
+    {
+      "name": "uploadFile, getPublicUrl, downloadFile, deleteFile",
+      "import_path": "@/lib/supabase/storage",
+      "description": "Supabase Storage helpers. uploadFile(bucket, path, file) \u2192 { path, fullPath }. getPublicUrl(bucket, path) \u2192 string.",
+      "when_to_use": "File/image uploads alongside the /api/upload route"
+    },
+    {
+      "name": "VerifyResult, isTunnelAuthEnabled, verifyTunnelRequest",
+      "import_path": "@/lib/tunnel-token",
+      "description": "Helper module with: VerifyResult, isTunnelAuthEnabled, verifyTunnelRequest",
+      "when_to_use": ""
+    },
+    {
+      "name": "TypographyPreset, TypographyPresetConfig, TYPOGRAPHY_PRESETS, resolveTypographyPreset, Density, DensityScale",
+      "import_path": "@/lib/typography",
+      "description": "Helper module with: TypographyPreset, TypographyPresetConfig, TYPOGRAPHY_PRESETS, resolveTypographyPreset, Density, DensityScale",
+      "when_to_use": ""
+    },
+    {
+      "name": "stripe, getStripeClient",
+      "import_path": "@/lib/stripe",
+      "description": "Helper module with: stripe, getStripeClient",
+      "when_to_use": ""
+    },
+    {
+      "name": "cn",
+      "import_path": "@/lib/utils",
+      "description": "Helper module with: cn",
+      "when_to_use": ""
+    },
+    {
+      "name": "TypographyStyle, DensityLevel, ScreenshotSpec, FeatureItem, TestimonialItem, FaqItem",
+      "import_path": "@/lib/config",
+      "description": "Helper module with: TypographyStyle, DensityLevel, ScreenshotSpec, FeatureItem, TestimonialItem, FaqItem",
+      "when_to_use": ""
+    },
+    {
+      "name": "PALETTES, PaletteName, pickPalette",
+      "import_path": "@/lib/brand-palettes",
+      "description": "Helper module with: PALETTES, PaletteName, pickPalette",
+      "when_to_use": ""
+    },
+    {
+      "name": "createClient",
+      "import_path": "@/lib/supabase/client",
+      "description": "Helper module with: createClient",
+      "when_to_use": ""
+    },
+    {
+      "name": "updateSession",
+      "import_path": "@/lib/supabase/middleware",
+      "description": "Helper module with: updateSession",
+      "when_to_use": ""
+    },
+    {
+      "name": "ventureSlug, authOptions",
+      "import_path": "@/lib/supabase/auth-metadata",
+      "description": "Helper module with: ventureSlug, authOptions",
+      "when_to_use": ""
+    },
+    {
+      "name": "getCanonicalEventName, getAnonymousId, getAttributionPayload, buildTrackingPayload",
+      "import_path": "@/lib/analytics/events",
+      "description": "Helper module with: getCanonicalEventName, getAnonymousId, getAttributionPayload, buildTrackingPayload",
+      "when_to_use": ""
+    },
+    {
+      "name": "inngest, ventureEvent",
+      "import_path": "@/lib/inngest/index",
+      "description": "Helper module with: inngest, ventureEvent",
+      "when_to_use": ""
+    }
+  ],
+  "app_dir": "/root/tmp/builds/followiqs"
+}

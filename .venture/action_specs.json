@@ -1,0 +1,208 @@
+{
+  "actions": [
+    {
+      "verb": "connect-trigger",
+      "description": "Initiate OAuth flow to connect a user's Gmail or Outlook inbox as a trigger source for quote detection.",
+      "http_method": "POST",
+      "archetype_hint": "workflow-automation",
+      "auth_required": true,
+      "inputs": [
+        {
+          "name": "provider",
+          "zod": "z.enum(['gmail','outlook'])",
+          "required": true
+        }
+      ],
+      "side_effects": [
+        {
+          "kind": "external_oauth",
+          "service": "gmail|outlook"
+        }
+      ],
+      "response": {
+        "shape": "{ install_url: string }",
+        "status": 200
+      },
+      "source_quote": "API Route: `/api/connect-trigger` \u2014 Kick off the Gmail/Outlook OAuth install. Body `{ provider: 'gmail'|'outlook' }`, response `{ install_url: string }`."
+    },
+    {
+      "verb": "create-flow",
+      "description": "Create a new automated reminder flow with user-defined steps and trigger type.",
+      "http_method": "POST",
+      "archetype_hint": "workflow-automation",
+      "auth_required": true,
+      "inputs": [
+        {
+          "name": "name",
+          "zod": "z.string().min(1)",
+          "required": true
+        },
+        {
+          "name": "trigger_type",
+          "zod": "z.enum(['gmail_inbox','outlook_inbox','webhook','manual'])",
+          "required": true
+        },
+        {
+          "name": "steps",
+          "zod": "z.array(z.any())",
+          "required": true
+        }
+      ],
+      "side_effects": [
+        {
+          "kind": "db_insert",
+          "table": "followiqs_flows"
+        }
+      ],
+      "response": {
+        "shape": "{ flowId: string }",
+        "status": 200
+      },
+      "source_quote": "API Route: `/api/create-flow` \u2014 Create a new flow. Body `{ name: string, trigger_type: string, steps: Step[] }`, response `{ flowId: string }`."
+    },
+    {
+      "verb": "trigger-flow",
+      "description": "Manually trigger a reminder flow for a specific quote, starting a new run.",
+      "http_method": "POST",
+      "archetype_hint": "workflow-automation",
+      "auth_required": true,
+      "inputs": [
+        {
+          "name": "flowId",
+          "zod": "z.string().uuid()",
+          "required": true
+        },
+        {
+          "name": "quoteSubject",
+          "zod": "z.string().min(1)",
+          "required": true
+        },
+        {
+          "name": "recipientEmail",
+          "zod": "z.string().email()",
+          "required": true
+        }
+      ],
+      "side_effects": [
+        {
+          "kind": "db_insert",
+          "table": "followiqs_runs"
+        }
+      ],
+      "response": {
+        "shape": "{ runId: string, status: 'queued' }",
+        "status": 200
+      },
+      "source_quote": "API Route: `/api/trigger-flow` \u2014 Manually fire a flow against a specific quote. Body `{ flowId: string, quoteSubject: string, recipientEmail: string }`, response `{ runId: string, status: 'queued' }`."
+    },
+    {
+      "verb": "pause-run",
+      "description": "Pause an in-progress run, e.g., when a customer replies manually.",
+      "http_method": "POST",
+      "archetype_hint": "workflow-automation",
+      "auth_required": true,
+      "inputs": [
+        {
+          "name": "runId",
+          "zod": "z.string().uuid()",
+          "required": true
+        }
+      ],
+      "side_effects": [
+        {
+          "kind": "db_update",
+          "table": "followiqs_runs"
+        }
+      ],
+      "response": {
+        "shape": "{ paused: true }",
+        "status": 200
+      },
+      "source_quote": "API Route: `/api/pause-run` \u2014 Pause an in-progress run. Body `{ runId: string }`, response `{ paused: true }`."
+    },
+    {
+      "verb": "retry-step",
+      "description": "Retry a failed step within a run, e.g., after an email bounce or rate limit.",
+      "http_method": "POST",
+      "archetype_hint": "workflow-automation",
+      "auth_required": true,
+      "inputs": [
+        {
+          "name": "runId",
+          "zod": "z.string().uuid()",
+          "required": true
+        },
+        {
+          "name": "stepIndex",
+          "zod": "z.number().int().min(0)",
+          "required": true
+        }
+      ],
+      "side_effects": [
+        {
+          "kind": "db_update",
+          "table": "followiqs_run_steps"
+        }
+      ],
+      "response": {
+        "shape": "{ retried: true }",
+        "status": 200
+      },
+      "source_quote": "API Route: `/api/retry-step` \u2014 Retry a failed step within a run. Body `{ runId: string, stepIndex: number }`, response `{ retried: true }`."
+    },
+    {
+      "verb": "view-run",
+      "description": "View a run and its steps, including timeline and status for each step.",
+      "http_method": "GET",
+      "archetype_hint": "workflow-automation",
+      "auth_required": true,
+      "inputs": [
+        {
+          "name": "runId",
+          "zod": "z.string().uuid()",
+          "required": true
+        }
+      ],
+      "side_effects": [],
+      "response": {
+        "shape": "{ run, steps }",
+        "status": 200
+      },
+      "source_quote": "API Route: `/api/view-run` \u2014 Read a run + its steps. Query `?runId=...`, response `{ run, steps }`."
+    },
+    {
+      "verb": "list-flows",
+      "description": "List all flows the user has created, including metadata and last-run status.",
+      "http_method": "GET",
+      "archetype_hint": "workflow-automation",
+      "auth_required": true,
+      "inputs": [],
+      "side_effects": [],
+      "response": {
+        "shape": "{ flows: Flow[] }",
+        "status": 200
+      },
+      "source_quote": "From PRD \u00a7Dashboard/flows: 'List of flows the user has created. Each row shows name, trigger type, last-run status, runs this week.'"
+    },
+    {
+      "verb": "list-runs",
+      "description": "List all runs across all flows, with optional status filters.",
+      "http_method": "GET",
+      "archetype_hint": "workflow-automation",
+      "auth_required": true,
+      "inputs": [
+        {
+          "name": "status",
+          "zod": "z.enum(['in-progress','completed','paused','failed']).optional()",
+          "required": false
+        }
+      ],
+      "side_effects": [],
+      "response": {
+        "shape": "{ runs: Run[] }",
+        "status": 200
+      },
+      "source_quote": "From PRD \u00a7Dashboard/runs: 'All runs across all flows with status filter chips (in-progress, completed, paused, failed).' "
+    }
+  ]
+}
