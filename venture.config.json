@@ -186,7 +186,9 @@
     "navCta": "Join Waitlist",
     "waitlistCardTitle": "Get early access",
     "waitlistCardSubtitle": "Be among the first to try Followiqs.",
-    "finalCtaButton": "Join Waitlist"
+    "finalCtaButton": "Join Waitlist",
+    "heroImage": "/screenshots/hero.png",
+    "productFrameImage": "/screenshots/hero.png"
   },
   "dashboard": {
     "navItems": [
